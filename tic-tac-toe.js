@@ -8,17 +8,25 @@ onload = () => {
 
     while(x < board.children.length) {
         let square = board.children[x];
-        square.className = 'square';
+        square.classList.add('square');
         square.addEventListener('click', function(){
             if(moveNum % 2 == 0){
                 square.innerHTML = "X";
-                square.className += " X";
+                square.classList.add('X');
             }
             else{
                 square.innerHTML = "O";
-                square.className += " O";
+                square.classList.add("O");
             }
             moveNum = moveNum + 1;
+
+        });
+        square.addEventListener('mouseenter', function(){
+            square.classList.add('hover');
+        });
+
+        square.addEventListener('mouseleave', function (){
+            square.classList.remove('hover')
         });
         x++;
     } 
