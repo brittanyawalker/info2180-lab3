@@ -4,6 +4,7 @@ let state = ['1', '2', '3',
 
 onload = () => {
     let board = document.getElementById("board");
+    let button = document.getElementsByTagName('button')[0];
     let moveNum = 0;
     let x = 0;
 
@@ -11,7 +12,7 @@ onload = () => {
         let square = Array.from(board.children)[x];
         square.classList.add('square');
         square.addEventListener('click', function(){
-            //console.log(Array.from(board.children).indexOf(square));
+
             if(moveNum % 2 == 0){
                 square.innerHTML = "X";
                 state[Array.from(board.children).indexOf(square)] = 'X';
@@ -36,7 +37,25 @@ onload = () => {
             square.classList.remove('hover')
         });
         x++;
-    } 
+    }
+
+    button.addEventListener('click', function (){
+        let statusDiv = document.getElementById('status');
+        statusDiv.innerHTML = 'Move your mouse over a square and click to play an X or an O';
+        statusDiv.classList.remove('you-won');
+        moveNum = 0;
+
+        let box = 0;
+
+        while (box < 9) {
+            let square = Array.from(board.children)[box];
+            square.innerHTML = "";
+            square.classList.remove("O");
+            square.classList.remove("X");
+            state[box] = box;
+            box++;
+        }
+    }) 
 }
 
 function checkWinState(){
@@ -74,7 +93,7 @@ function checkWinState(){
             winner = 'O';
         }
     }
-    else if(state[2] == state[5] && state[5] == state[6]){
+    else if(state[2] == state[4] && state[4] == state[6]){
         win = true;
         if(state[2] == 'X'){
             winner = 'X';
