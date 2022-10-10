@@ -13,20 +13,25 @@ onload = () => {
         square.classList.add('square');
         square.addEventListener('click', function(){
 
-            if(moveNum % 2 == 0){
-                square.innerHTML = "X";
-                state[Array.from(board.children).indexOf(square)] = 'X';
-                square.classList.add('X');
-            }
-            else{
-                square.innerHTML = "O";
-                state[Array.from(board.children).indexOf(square)] = 'O';
-                square.classList.add("O");
-            }
+            if (square.innerHTML == 'X' || square.innerHTML == 'O'){
 
-            checkWinState();
+            } else {
 
-            moveNum = moveNum + 1;
+                if(moveNum % 2 == 0){
+                    square.innerHTML = "X";
+                    state[Array.from(board.children).indexOf(square)] = 'X';
+                    square.classList.add('X');
+                }
+                else{
+                    square.innerHTML = "O";
+                    state[Array.from(board.children).indexOf(square)] = 'O';
+                    square.classList.add("O");
+                }
+
+                checkWinState();
+
+                moveNum = moveNum + 1;
+            }
         });
 
         square.addEventListener('mouseenter', function(){
